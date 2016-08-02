@@ -38,7 +38,7 @@ import org.xml.sax.SAXException;
  * Class visitor that generates XHTML SAX events to describe the
  * contents of the visited class.
  */
-class XHTMLClassVisitor extends ClassVisitor {
+class XHTMLClassVisitor implements ClassVisitor {
 
     private final XHTMLContentHandler xhtml;
 
@@ -49,7 +49,6 @@ class XHTMLClassVisitor extends ClassVisitor {
     private String packageName;
 
     public XHTMLClassVisitor(ContentHandler handler, Metadata metadata) {
-        super(Opcodes.ASM5);
         this.xhtml = new XHTMLContentHandler(handler, metadata);
         this.metadata = metadata;
     }
