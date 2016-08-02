@@ -26,4 +26,7 @@ public interface TikaMetadataKeys {
     String PROTECTED = "protected";
 
     String EMBEDDED_RELATIONSHIP_ID = "embeddedRelationshipId";
+    
+    String TIKA_PARSER_PARSE_SHAPES_KEY = "TIKA_PARSER_PARSE_SHAPES";
+
 }

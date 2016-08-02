@@ -39,16 +39,15 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.extractor.EmbeddedDocumentExtractor;
 import org.apache.tika.extractor.ParsingEmbeddedDocumentExtractor;
-import org.apache.tika.io.FilenameUtils;
 import org.apache.tika.io.TikaInputStream;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.metadata.TikaCoreProperties;
+import org.apache.tika.metadata.TikaMetadataKeys;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.microsoft.OfficeParser.POIFSDocumentType;
 import org.apache.tika.sax.EmbeddedContentHandler;
 import org.apache.tika.sax.XHTMLContentHandler;
 import org.apache.xmlbeans.XmlException;
-import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
@@ -314,4 +313,19 @@ public abstract class AbstractOOXMLExtractor implements OOXMLExtractor {
      */
     protected abstract List<PackagePart> getMainDocumentParts()
             throws TikaException;
+
+    private static final boolean SHOULD_PROCESS_SHAPES_DEFAULT_VALUE = false;
+
+    public boolean shouldProcessShapes(Metadata metadata)
+    {
+        if (metadata != null)
+        {
+            String shouldProcessShapesValue = metadata.get(TikaMetadataKeys.TIKA_PARSER_PARSE_SHAPES_KEY);
+            if (shouldProcessShapesValue != null && !shouldProcessShapesValue.isEmpty())
+            {
+                return Boolean.valueOf(shouldProcessShapesValue);
+            }
+        }
+        return SHOULD_PROCESS_SHAPES_DEFAULT_VALUE;
+    }
 }

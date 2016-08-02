@@ -145,7 +145,9 @@ public class XSSFExcelExtractorDecorator extends AbstractOOXMLExtractor {
            for(String footer : sheetExtractor.footers) {
               extractHeaderFooter(footer, xhtml);
            }
-           processShapes(iter.getShapes(), xhtml);
+           if (shouldProcessShapes(metadata)){
+              processShapes(iter.getShapes(), xhtml);
+           }
            // All done with this sheet
            xhtml.endElement("div");
        }

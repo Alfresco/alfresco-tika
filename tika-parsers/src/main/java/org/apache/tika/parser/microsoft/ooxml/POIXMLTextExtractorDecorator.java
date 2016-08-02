@@ -21,6 +21,8 @@ import java.util.List;
 
 import org.apache.poi.POIXMLTextExtractor;
 import org.apache.poi.openxml4j.opc.PackagePart;
+import org.apache.poi.xssf.extractor.XSSFEventBasedExcelExtractor;
+import org.apache.poi.xssf.extractor.XSSFExcelExtractor;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.sax.XHTMLContentHandler;
 import org.xml.sax.SAXException;
@@ -34,6 +36,14 @@ public class POIXMLTextExtractorDecorator extends AbstractOOXMLExtractor {
     @Override
     protected void buildXHTML(XHTMLContentHandler xhtml) throws SAXException {
         // extract document content as a single string (not structured)
+        if(extractor instanceof XSSFEventBasedExcelExtractor) 
+        {
+            ((XSSFEventBasedExcelExtractor)extractor).setIncludeTextBoxes(false);
+        }
+        else if(extractor instanceof XSSFExcelExtractor)
+        {
+            ((XSSFExcelExtractor)extractor).setIncludeTextBoxes(false);
+        }
         xhtml.element("p", extractor.getText());
     }
 
