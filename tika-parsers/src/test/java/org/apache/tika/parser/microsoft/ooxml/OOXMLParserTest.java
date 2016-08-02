@@ -1010,7 +1010,8 @@ public class OOXMLParserTest extends TikaTest {
     //TIKA-1100:
     @Test
     public void testExcelTextBox() throws Exception {
-        Metadata metadata = new Metadata(); 
+        Metadata metadata = new Metadata();
+        metadata.add(TikaMetadataKeys.TIKA_PARSER_PARSE_SHAPES_KEY, "true");        
         ContentHandler handler = new BodyContentHandler();
         ParseContext context = new ParseContext();
         InputStream input = getTestDocument("testEXCEL_textbox.xlsx");
