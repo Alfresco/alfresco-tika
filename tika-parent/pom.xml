@@ -254,6 +254,7 @@
     <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
     <gpg.skip>true</gpg.skip>
     <maven.javadoc.skip>true</maven.javadoc.skip>
+    <clirr.skip>true</clirr.skip>
   </properties>
 
   <build>
