@@ -22,12 +22,15 @@ import java.io.IOException;
 import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
+import org.apache.pdfbox.cos.COSBase;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
 import org.apache.pdfbox.pdmodel.PDDocumentNameDictionary;
@@ -277,15 +280,31 @@ class PDF2XHTML extends PDFTextStripper {
             throw new IOExceptionWithCause("Unable to end a page", e);
         }
     }
+    
+    private void extractImages(PDResources resources) throws SAXException, IOException {
+    	    extractImages(resources, new HashSet<COSBase>());
+    }
 
-    private void extractImages(PDResources resources) throws SAXException {
+    private void extractImages(PDResources resources, Set<COSBase> seenThisPage) throws SAXException, IOException {
+    	
         if (resources == null) {
             return;
         }
-
+        
         for (PDXObject object : resources.getXObjects().values()) {
+        	
+            if (object == null) {
+                continue;
+            }
+            COSBase cosStream = object.getCOSObject();
+            if (seenThisPage.contains(cosStream)) {
+                //avoid infinite recursion TIKA-1742
+                continue;
+            }
+            seenThisPage.add(cosStream);
+            
             if (object instanceof PDXObjectForm) {
-                extractImages(((PDXObjectForm) object).getResources());
+            	    extractImages(((PDXObjectForm) object).getResources(), seenThisPage);
             } else if (object instanceof PDXObjectImage) {
                 PDXObjectImage image = (PDXObjectImage) object;
 
@@ -619,4 +638,3 @@ class PDF2XHTML extends PDFTextStripper {
         }
     }
 }
-
