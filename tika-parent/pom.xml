@@ -310,6 +310,7 @@
     <commons.io.version>2.5</commons.io.version>
     <cxf.version>3.0.16</cxf.version>
     <slf4j.version>1.7.24</slf4j.version>
+	<gpg.skip>true</gpg.skip>
   </properties>
 
   <build>
