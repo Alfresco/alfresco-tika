@@ -439,9 +439,10 @@
   </profiles>
 
   <scm>
-   <connection>scm:git:https://github.com/Alfresco/tika.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Alfresco/tika.git</developerConnection>
+    <connection>scm:git:git@github.com:Alfresco/tika.git</connection>
+    <developerConnection>scm:git:git@github.com:Alfresco/tika.git</developerConnection>
     <url>https://github.com/Alfresco/tika</url>
-    <!-- <tag>1.17-rc2</tag> -->
+	<tag>1.17-rc2-alfresco</tag>
   </scm>
+
 </project>
