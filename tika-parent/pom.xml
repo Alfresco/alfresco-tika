@@ -442,7 +442,7 @@
     <connection>scm:git:git@github.com:Alfresco/alfresco-tika.git</connection>
     <developerConnection>scm:git:git@github.com:Alfresco/alfresco-tika.git</developerConnection>
     <url>https://github.com/Alfresco/alfresco-tika</url>
-	<tag>1.17-rc2-alfresco</tag>
+	<tag>HEAD</tag>
   </scm>
 
 </project>
