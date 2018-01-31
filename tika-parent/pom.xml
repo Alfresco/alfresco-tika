@@ -437,12 +437,4 @@
       </build>
     </profile>
   </profiles>
-
-  <scm>
-    <connection>scm:git:git@github.com:Alfresco/alfresco-tika.git</connection>
-    <developerConnection>scm:git:git@github.com:Alfresco/alfresco-tika.git</developerConnection>
-    <url>https://github.com/Alfresco/alfresco-tika</url>
-	<tag>HEAD</tag>
-  </scm>
-
 </project>

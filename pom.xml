@@ -202,4 +202,11 @@ least three +1 Tika PMC votes are cast.
     <system>Jenkins</system>
     <url>https://builds.apache.org/job/Tika-trunk/</url>
   </ciManagement>
+
+  <scm>
+    <connection>scm:git:git@github.com:Alfresco/alfresco-tika.git</connection>
+    <developerConnection>scm:git:git@github.com:Alfresco/alfresco-tika.git</developerConnection>
+    <url>https://github.com/Alfresco/alfresco-tika</url>
+    <tag>HEAD</tag>
+  </scm>
 </project>
