@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.apache.tika</groupId>
     <artifactId>tika-parent</artifactId>
-    <version>1.17-alfresco-patched-test-9</version>
+    <version>1.17-alfresco-patched-SNAPSHOT</version>
     <relativePath>tika-parent/pom.xml</relativePath>
   </parent>
 
@@ -207,7 +207,7 @@ least three +1 Tika PMC votes are cast.
     <connection>scm:git:git@github.com:Alfresco/alfresco-tika.git</connection>
     <developerConnection>scm:git:git@github.com:Alfresco/alfresco-tika.git</developerConnection>
     <url>https://github.com/Alfresco/alfresco-tika</url>
-    <tag>tika-1.17-alfresco-patched-test-9</tag>
+    <tag>HEAD</tag>
   </scm>
   <distributionManagement>
     <repository>
