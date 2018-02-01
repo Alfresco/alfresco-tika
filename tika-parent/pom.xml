@@ -28,24 +28,17 @@
     <version>17</version>
     <relativePath />
   </parent>
-  
-    <scm>
-        <connection>scm:git:git@github.com:Alfresco/alfresco-repository.git</connection>
-        <developerConnection>scm:git:git@github.com:Alfresco/alfresco-repository.git</developerConnection>
-        <url>https://github.com/Alfresco/alfresco-repository</url>
-        <tag>HEAD</tag>
-    </scm>
 
-    <distributionManagement>
-        <repository>
-            <id>alfresco-internal</id>
-            <url>https://artifacts.alfresco.com/nexus/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>alfresco-internal-snapshots</id>
-            <url>https://artifacts.alfresco.com/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
+  <distributionManagement>
+    <repository>
+      <id>alfresco-thirdparty</id>
+      <url>https://artifacts.alfresco.com/nexus/content/repositories/thirdparty</url>
+    </repository>
+    <snapshotRepository>
+      <id>alfresco-thirdparty</id>
+      <url>https://artifacts.alfresco.com/nexus/content/repositories/thirdparty</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <groupId>org.apache.tika</groupId>
   <artifactId>tika-parent</artifactId>
