@@ -35,9 +35,9 @@
   <url>http://tika.apache.org</url>
 
   <scm>
-    <connection>scm:git:https://github.com/Alfresco/tika.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Alfresco/tika.git</developerConnection>
-    <url>https://github.com/Alfresco/tika</url>
+    <connection>scm:git:git@github.com:Alfresco/alfresco-tika.git</connection>
+    <developerConnection>scm:git:git@github.com:Alfresco/alfresco-tika.git</developerConnection>
+    <url>https://github.com/Alfresco/alfresco-tika</url>
     <tag>HEAD</tag>
   </scm>
 
