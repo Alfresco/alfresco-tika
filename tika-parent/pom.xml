@@ -31,7 +31,7 @@
 
   <groupId>org.apache.tika</groupId>
   <artifactId>tika-parent</artifactId>
-  <version>1.6-20180308-alfresco-patched</version>
+  <version>1.6-alfresco-patched-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Tika parent</name>
@@ -341,8 +341,4 @@
       </build>
     </profile>
   </profiles>
-
-  <scm>
-    <tag>tika-1.6-20180308-alfresco-patched</tag>
-  </scm>
 </project>
