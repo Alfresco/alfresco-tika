@@ -29,9 +29,20 @@
     <relativePath />
   </parent>
 
+  <distributionManagement>
+    <repository>
+      <id>alfresco-thirdparty</id>
+      <url>https://artifacts.alfresco.com/nexus/content/repositories/thirdparty</url>
+    </repository>
+    <snapshotRepository>
+      <id>alfresco-thirdparty</id>
+      <url>https://artifacts.alfresco.com/nexus/content/repositories/thirdparty</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <groupId>org.apache.tika</groupId>
   <artifactId>tika-parent</artifactId>
-  <version>1.21</version>
+  <version>1.21-alfresco-patched-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Tika parent</name>
@@ -344,6 +355,9 @@
 
     <cxf.version>3.3.1</cxf.version>
     <slf4j.version>1.7.25</slf4j.version>
+        <gpg.skip>true</gpg.skip>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <clirr.skip>true</clirr.skip>
     <jackson.version>2.9.8</jackson.version>
     <!-- when this is next upgraded, see if we can get rid of
          javax.activation dependency in tika-server -->
@@ -536,11 +550,4 @@
       </build>
     </profile>
   </profiles>
-
-  <scm>
-    <connection>scm:git:https://github.com/apache/</connection>
-    <developerConnection>scm:git:https://github.com/apache/</developerConnection>
-    <url>https://github.com/apache/tika</url>
-    <tag>1.21-rc2</tag>
-  </scm>
 </project>
