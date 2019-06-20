@@ -358,7 +358,7 @@
         <gpg.skip>true</gpg.skip>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <clirr.skip>true</clirr.skip>
-    <jackson.version>2.9.8</jackson.version>
+    <jackson.version>2.9.9</jackson.version>
     <!-- when this is next upgraded, see if we can get rid of
          javax.activation dependency in tika-server -->
     <jaxb.version>2.3.2</jaxb.version>
