@@ -21,7 +21,10 @@ import static org.junit.Assert.assertFalse;
 
 import java.io.InputStream;
 
+import org.apache.poi.poifs.filesystem.DirectoryNode;
+import org.apache.poi.poifs.filesystem.NPOIFSFileSystem;
 import org.apache.tika.TikaTest;
+import org.apache.tika.io.CloseShieldInputStream;
 import org.apache.tika.io.TikaInputStream;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.ParseContext;
@@ -30,8 +33,6 @@ import org.apache.tika.parser.microsoft.ooxml.OOXMLParserTest;
 import org.apache.tika.sax.BodyContentHandler;
 import org.junit.Test;
 import org.xml.sax.ContentHandler;
-
-
 
 public class OfficeParserTest extends TikaTest {
 
@@ -45,24 +46,53 @@ public class OfficeParserTest extends TikaTest {
 		assertTrue(xml.contains("test"));
 	}
 
+	@Test
+	public void testPoiBug61295() throws Exception {
+
+		boolean passed = false;
+		DirectoryNode root;
+		InputStream stream = getTestDocument("61295.tmp");
+		
+		try {
+			TikaInputStream tstream = TikaInputStream.cast(stream);
+			
+			if (tstream == null) {
+				root = new NPOIFSFileSystem(new CloseShieldInputStream(stream)).getRoot();
+			} else {
+				final Object container = tstream.getOpenContainer();
+				if (container instanceof NPOIFSFileSystem) {
+					root = ((NPOIFSFileSystem) container).getRoot();
+				} else if (container instanceof DirectoryNode) {
+					root = (DirectoryNode) container;
+				} else if (tstream.hasFile()) {
+					root = new NPOIFSFileSystem(tstream.getFileChannel()).getRoot();
+				} else {
+					root = new NPOIFSFileSystem(new CloseShieldInputStream(tstream)).getRoot();
+				}
+			}
+
+			Metadata metadata = new Metadata();
+			new SummaryExtractor(metadata).parseSummaries(root);
+			
+			passed = true;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			passed = true;
+		} catch (Exception exception) {
+			passed = false;
+		} finally {
+			if (stream != null) {
+				try {
+					stream.close();
+				} catch (Exception e2) {
+					stream = null;
+				}
+			}
+		}
+
+		assertTrue("An exception that is not ArrayIndexOutOfBoundsException has been thrown", passed);
+	}
+
 	private InputStream getTestDocument(String name) {
 		return TikaInputStream.get(OOXMLParserTest.class.getResourceAsStream("/test-documents/" + name));
-	}
-	
-	@Test
-	public void test_bug_52372() throws Exception {
-		Metadata metadata = new Metadata();
-		Parser parser = new OfficeParser();
-		ContentHandler handler = new BodyContentHandler();
-        ParseContext context = new ParseContext();
-
-        InputStream input = getTestDocument("52372.doc");
-        
-        try {
-			parser.parse(input, handler, metadata, context);
-		} catch (Exception e) {
-			boolean errorIsOOM = e.toString().contains("OutOfMemoryError");
-			assertFalse(errorIsOOM);
-		}
 	}
 }
