@@ -42,6 +42,7 @@ import org.apache.tika.metadata.TikaMetadataKeys;
 import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
+import org.apache.tika.parser.microsoft.OfficeParser;
 import org.apache.tika.parser.microsoft.WordParserTest;
 import org.apache.tika.sax.BodyContentHandler;
 import org.junit.Test;
@@ -1101,5 +1102,21 @@ public class OOXMLParserTest extends TikaTest {
         assertTrue(c != -1);
         assertTrue(a < b);
         assertTrue(b < c);
+    }
+    
+    @Test
+    public void test_bug_57031() throws Exception {
+        InputStream input = getTestDocument("57031.docx");
+        Metadata metadata = new Metadata(); 
+        ContentHandler handler = new BodyContentHandler();
+        ParseContext context = new ParseContext();
+        try {
+            parser.parse(input, handler, metadata, context);
+        } catch(Exception e) {
+        	boolean errorIsOOM = (e.toString().contains("OutOfMemory"));
+        	assertFalse(errorIsOOM);
+        } finally {
+            input.close();
+        }
     }
 }
