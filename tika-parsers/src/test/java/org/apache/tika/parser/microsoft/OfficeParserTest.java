@@ -17,6 +17,7 @@
 package org.apache.tika.parser.microsoft;
 
 import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import java.io.InputStream;
 
@@ -26,9 +27,12 @@ import org.apache.tika.TikaTest;
 import org.apache.tika.io.CloseShieldInputStream;
 import org.apache.tika.io.TikaInputStream;
 import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.parser.microsoft.ooxml.OOXMLParserTest;
+import org.apache.tika.sax.BodyContentHandler;
 import org.junit.Test;
+import org.xml.sax.ContentHandler;
 
 public class OfficeParserTest extends TikaTest {
 
