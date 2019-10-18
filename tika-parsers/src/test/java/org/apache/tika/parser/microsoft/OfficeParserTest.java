@@ -17,31 +17,52 @@
 package org.apache.tika.parser.microsoft;
 
 import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import java.io.InputStream;
 
 import org.apache.tika.TikaTest;
 import org.apache.tika.io.TikaInputStream;
 import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.parser.microsoft.ooxml.OOXMLParserTest;
+import org.apache.tika.sax.BodyContentHandler;
 import org.junit.Test;
+import org.xml.sax.ContentHandler;
 
 
 
 public class OfficeParserTest extends TikaTest {
 
-  @Test
-  public void parseOfficeWord() throws Exception {
-    Metadata metadata = new Metadata();
-    Parser parser = new OfficeParser();
+	@Test
+	public void parseOfficeWord() throws Exception {
+		Metadata metadata = new Metadata();
+		Parser parser = new OfficeParser();
 
-    String xml = getXML(getTestDocument("test.doc"), parser, metadata).xml;
+		String xml = getXML(getTestDocument("test.doc"), parser, metadata).xml;
 
-    assertTrue(xml.contains("test"));
-  }
+		assertTrue(xml.contains("test"));
+	}
 
-  private InputStream getTestDocument(String name) {
-    return TikaInputStream.get(OOXMLParserTest.class.getResourceAsStream("/test-documents/" + name));
-}
+	private InputStream getTestDocument(String name) {
+		return TikaInputStream.get(OOXMLParserTest.class.getResourceAsStream("/test-documents/" + name));
+	}
+	
+	@Test
+	public void test_bug_52372() throws Exception {
+		Metadata metadata = new Metadata();
+		Parser parser = new OfficeParser();
+		ContentHandler handler = new BodyContentHandler();
+        ParseContext context = new ParseContext();
+
+        InputStream input = getTestDocument("52372.doc");
+        
+        try {
+			parser.parse(input, handler, metadata, context);
+		} catch (Exception e) {
+			boolean errorIsOOM = e.toString().contains("OutOfMemoryError");
+			assertFalse(errorIsOOM);
+		}
+	}
 }
