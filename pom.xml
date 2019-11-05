@@ -210,6 +210,13 @@ A release vote template has been generated for you:
     </profile>
   </profiles>
 
+  <distributionManagement>
+     <repository>
+	<id>release-repository</id>
+	    <url>https://artifacts.alfresco.com/nexus/content/repositories/thirdparty</url>
+     </repository>
+   </distributionManagement>
+
   <description>The Apache Tika™ toolkit detects and extracts metadata and structured text content from various documents using existing parser libraries. </description>
   <organization>
   	<name>The Apache Software Foundation</name>
