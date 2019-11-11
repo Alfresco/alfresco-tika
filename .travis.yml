@@ -3,3 +3,24 @@ sudo: required
 language: java
 jdk: 
   - openjdk7
+
+stages:
+  - release
+
+branches:
+  only:
+    - 1.6-alfresco-patched-20191015
+
+jobs:
+    include:
+      - stage: release
+        name: "Push to Nexus"
+        before_install:
+          - "cp .travis.settings.xml $HOME/.m2/settings.xml"
+        script:
+          # Use full history for release
+          - git checkout -B "${TRAVIS_BRANCH}"
+          # Add email to link commits to user
+          - git config user.email "${GIT_EMAIL}"
+          # Skip building of release commits
+          - mvn --batch-mode -q -DscmCommentPrefix="[maven-release-plugin][skip ci] " -Dusername="${GIT_USERNAME}" -Dpassword="${GIT_PASSWORD}" -DskipTests -Darguments=-DskipTests release:clean release:prepare -DdevelopmentVersion=1.6-20191015-alfresco-patched-SNAPSHOT -DreleaseVersion=1.6-20191015-alfresco-patched release:perform 
