@@ -50,6 +50,13 @@
     <url>https://github.com/Alfresco/alfresco-tika</url>
   </scm>
 
+  <repositories>
+     <repository>
+      <id>alfresco-public</id>
+      <url>https://artifacts.alfresco.com/nexus/content/repositories/thirdparty</url>
+     </repository>
+   </repositories>
+
   <distributionManagement>
      <repository>
       <id>alfresco-public</id>
