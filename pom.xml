@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.apache.tika</groupId>
     <artifactId>tika-parent</artifactId>
-    <version>1.6-20191015-alfresco-patched</version>
+    <version>1.6-20191015-alfresco-patched-SNAPSHOT</version>
     <relativePath>tika-parent/pom.xml</relativePath>
   </parent>
 
@@ -38,7 +38,7 @@
     <connection>scm:git:https://github.com/Alfresco/alfresco-tika.git</connection>
     <developerConnection>scm:git:https://github.com/Alfresco/alfresco-tika.git</developerConnection>
     <url>https://github.com/Alfresco/alfresco-tika</url>
-    <tag>tika-1.6-20191015-alfresco-patched</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <distributionManagement>
