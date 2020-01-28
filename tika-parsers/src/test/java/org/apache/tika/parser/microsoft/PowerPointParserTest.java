@@ -255,4 +255,17 @@ public class PowerPointParserTest extends TikaTest {
                "<p class=\"slide-content\">Now<br />\n*<br />\n*<br />",
                result.xml);
     }
+    
+    // CVE-2014-9527
+    @Test
+    public void testCVE2014_9527() throws Exception {
+    	InputStream input = PowerPointParserTest.class.getResourceAsStream("/test-documents/57272.ppt");
+        try {
+            Metadata metadata = new Metadata();
+            ContentHandler handler = new BodyContentHandler();
+            new OfficeParser().parse(input, handler, metadata, new ParseContext());
+        } finally {
+            input.close();
+        }
+    }
 }
