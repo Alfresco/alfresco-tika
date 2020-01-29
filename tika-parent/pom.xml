@@ -31,7 +31,7 @@
 
   <groupId>org.apache.tika</groupId>
   <artifactId>tika-parent</artifactId>
-  <version>1.6-20191015-alfresco-patched-SNAPSHOT</version>
+  <version>1.6-alfresco-patched-20200128</version>
   <packaging>pom</packaging>
 
   <name>Apache Tika parent</name>

@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.apache.tika</groupId>
     <artifactId>tika-parent</artifactId>
-    <version>1.6-20191015-alfresco-patched-SNAPSHOT</version>
+    <version>1.6-alfresco-patched-20200128</version>
     <relativePath>../tika-parent/pom.xml</relativePath>
   </parent>
 
@@ -35,7 +35,7 @@
   <url>http://tika.apache.org/</url>
 
   <properties>
-    <poi.version>3.10.1-20191018-alfresco-patched</poi.version>
+    <poi.version>3.10.1-20200128-alfresco-patched</poi.version>
     <codec.version>1.5</codec.version> <!-- NOTE: sync with POI -->
     <mime4j.version>0.7.2</mime4j.version>
     <vorbis.version>0.4</vorbis.version>

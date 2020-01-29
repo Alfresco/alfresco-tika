@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.apache.tika</groupId>
     <artifactId>tika-parent</artifactId>
-    <version>1.6-alfresco-patched-20191015</version>
+    <version>1.6-alfresco-patched-20200128</version>
     <relativePath>../tika-parent/pom.xml</relativePath>
   </parent>
 
